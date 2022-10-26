@@ -8,8 +8,8 @@ const Signup = () => {
   }
 
   return (
-    <div className="container mx-auto py-3">
-      <h3 className="text-center text-3xl font-bold mb-3">Signup here</h3>
+    <div className="container mx-auto pb-5">
+      <h3 className="text-center text-3xl font-bold mb-5">Signup</h3>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">

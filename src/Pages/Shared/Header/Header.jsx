@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaMoon, FaSun } from 'react-icons/fa'
 
 const Header = () => {
   const { user } = { user: { photoURL: 'logo.png', displayName: 'Sumon Kaysar' } }
@@ -18,6 +18,13 @@ const Header = () => {
             <li><Link to="/courses">Courses</Link></li>
             <li><Link to="/faq">FAQ</Link></li>
             <li><Link to="/blog">Blog</Link></li>
+            <li>
+              <label className="swap swap-rotate">
+                <input type="checkbox" />
+                <FaSun className="swap-on" />
+                <FaMoon className="swap-off" />
+              </label>
+            </li>
             {
               user ?
                 <li>

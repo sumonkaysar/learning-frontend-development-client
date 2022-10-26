@@ -8,7 +8,8 @@ const Login = () => {
   }
 
   return (
-    <div className="container mx-auto py-5">
+    <div className="container mx-auto pb-5">
+      <h3 className="text-center text-3xl font-bold mb-5">Login</h3>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">
@@ -25,6 +26,12 @@ const Login = () => {
           </div>
           <div className="form-control mt-2">
             <button className="btn btn-primary">Login</button>
+          </div>
+          <div className="form-control mt-2">
+            <button className="btn btn-outline btn-success">Login with Google</button>
+          </div>
+          <div className="form-control mt-2">
+            <button className="btn btn-outline btn-info">Login with Github</button>
           </div>
         </form>
       </div>
