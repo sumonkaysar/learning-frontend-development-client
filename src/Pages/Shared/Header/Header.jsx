@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { FaBars, FaMoon, FaSun } from 'react-icons/fa'
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = { user: { photoURL: 'logo.png', displayName: 'Sumon Kaysar' } }
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="navbar bg-base-100 fixed top-0 z-10">
