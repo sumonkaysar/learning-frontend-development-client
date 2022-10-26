@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import Course from "../Shared/Course/Course";
+import CardCourse from "../Shared/CardCourse/CardCourse";
 
 const Courses = () => {
   const categories = useLoaderData();
@@ -24,8 +24,8 @@ const Courses = () => {
   }, []);
 
   return (
-    <div className="flex container gap-5 mx-auto max-w-[90%]">
-      <div className="flex-shrink">
+    <div className="md:flex container gap-5 mx-auto max-w-[90%]">
+      <div className="flex-shrink mb-7">
         {
           categories.map(category => <p key={category.id}>
             <button onClick={() => loadCategoryCourses(category.id)} className="link">{category.name}</button>
@@ -35,7 +35,7 @@ const Courses = () => {
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         {
           courses &&
-          courses.map(course => <Course
+          courses.map(course => <CardCourse
             key={course.id}
             course={course}
           />)
