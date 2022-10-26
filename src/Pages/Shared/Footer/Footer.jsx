@@ -1,8 +1,8 @@
 const Footer = () => {
 
   return (
-    <footer>
-      <p className="text-center">Copyright&copy;2022</p>
+    <footer className="bg-base-300 py-5 text-center">
+      <p>Copyright&copy;2022</p>
     </footer>
   );
 }

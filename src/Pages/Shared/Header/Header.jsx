@@ -5,7 +5,7 @@ const Header = () => {
   const { user } = { user: { photoURL: 'logo.png', displayName: 'Sumon Kaysar' } }
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 fixed top-0">
       <div className="container mx-auto">
         <div className="flex-1">
           <Link to="/" className="flex items-center text-sm md:text-xl">

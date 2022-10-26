@@ -7,7 +7,7 @@ const Root = () => {
   return (
     <div className="bg-base-200">
       <Header />
-      <div>
+      <div className="my-10 pt-16">
         <Outlet />
       </div>
       <Footer />
