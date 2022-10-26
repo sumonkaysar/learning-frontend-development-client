@@ -4,14 +4,25 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const {user, providerLogin} = useContext(AuthContext);
+  const {login, providerLogin} = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.target;
-    
+    const email = form.email.value;
+    const password = form.password.value;
+
+    handleEmailLogin({email, password});
+  }
+
+  const handleEmailLogin = (data) => {
+    login(data)
+    .then(({user}) => {
+      console.log(user);
+    })
+    .catch(err => console.log(err));
   }
 
   const handleLogin = (provider) => {
