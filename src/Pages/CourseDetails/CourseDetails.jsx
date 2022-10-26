@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaEye, FaStar } from 'react-icons/fa'
 import { createRef } from "react";
-import ReactToPdf from 'react-to-pdf';
+// import ReactToPdf from 'react-to-pdf';
 
 const CourseDetails = () => {
   const { id, name, details, images, category_id, price, ratings } = useLoaderData();
@@ -11,11 +11,11 @@ const CourseDetails = () => {
   return (
     <div className="container mx-auto">
       <div className="card bg-base-100 shadow-xl max-w-[900px] mx-auto" ref={ref}>
-      <ReactToPdf targetRef={ref} filename="div-blue.pdf">
+      {/* <ReactToPdf targetRef={ref} filename="div-blue.pdf"> */}
         {({toPdf}) => (
           <button className="btn rounded-b-none" onClick={toPdf}>Download</button>
         )}
-    </ReactToPdf>
+    {/* </ReactToPdf> */}
 
         <figure className="">
           <div className="carousel w-full">

@@ -1,10 +1,35 @@
 import { Link } from "react-router-dom";
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const {user, providerLogin} = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(event.target);
+    const form = event.target;
+    
+  }
+
+  const handleGoogleLogin = () => {
+    providerLogin(googleProvider)
+    .then((result) => {
+      const {user} = result;
+      console.log(user);
+    })
+    .catch(err => console.error(err))
+  }
+
+  const handleGithubLogin = () => {
+    providerLogin(githubProvider)
+    .then((result) => {
+      const {user} = result;
+      console.log(user);
+    })
+    .catch(err => console.error(err))
   }
 
   return (
@@ -28,10 +53,10 @@ const Login = () => {
             <button className="btn btn-primary">Login</button>
           </div>
           <div className="form-control mt-2">
-            <button className="btn btn-outline btn-success">Login with Google</button>
+            <button onClick={handleGoogleLogin} className="btn btn-outline btn-success">Login with Google</button>
           </div>
           <div className="form-control mt-2">
-            <button className="btn btn-outline btn-info">Login with Github</button>
+            <button onClick={handleGithubLogin} className="btn btn-outline btn-info">Login with Github</button>
           </div>
         </form>
       </div>

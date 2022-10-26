@@ -4,7 +4,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+    .then(() => console.log('logged out'))
+    .catch(err => console.error(err))
+  }
 
   return (
     <div className="navbar bg-base-100 fixed top-0 z-10">
@@ -29,11 +35,16 @@ const Header = () => {
             </li>
             {
               user ?
-                <li>
-                  <Link to="/profile">
-                    <img title={user?.displayName} className="w-7 h-7 rounded-full" src={user?.photoURL} />
-                  </Link>
-                </li> :
+                <>
+                  <li>
+                    <Link to="/profile">
+                      <img title={user?.displayName} className="w-7 h-7 rounded-full" src={user?.photoURL} />
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout} className="btn">Logout</button>
+                  </li>
+                </> :
                 <li><Link to="/login">Login</Link></li>
             }
           </ul>
@@ -44,15 +55,19 @@ const Header = () => {
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 right-0">
               {
                 user ?
-                  <li>
-                    <Link to="/profile">
-                      <img className="w-5 h-5 rounded-full" src={user.photoURL} />
-                      {
-                        user?.displayName
-                      }
-                    </Link>
-                  </li> :
-
+                  <>
+                    <li>
+                      <Link to="/profile">
+                        <img className="w-5 h-5 rounded-full" src={user.photoURL} />
+                        {
+                          user?.displayName
+                        }
+                      </Link>
+                    </li>
+                    <li>
+                      <button onClick={handleLogout} className="btn btn-outline btn-primary">Logout</button>
+                    </li>
+                  </> :
                   <li><Link to="/login">Login</Link></li>
               }
               <li><Link to="/courses">Courses</Link></li>
