@@ -1,20 +1,40 @@
+import { Link } from "react-router-dom";
+
 const Signup = () => {
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(event.target);
+  }
+
   return (
-    <div className="container mx-auto py-5">
+    <div className="container mx-auto py-3">
+      <h3 className="text-center text-3xl font-bold mb-3">Signup here</h3>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">
             <label className="label">
+              <span className="label-text">Full Name</span>
+            </label>
+            <input type="text" name="name" placeholder="full name" className="input input-bordered" />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input type="text" name="photoURL" placeholder="photo url" className="input input-bordered" />
+          </div>
+          <div className="form-control">
+            <label className="label">
               <span className="label-text">Email</span>
             </label>
-            <input type="text" placeholder="email" className="input input-bordered" />
+            <input type="email" name="email" placeholder="email" className="input input-bordered" />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input type="text" placeholder="password" className="input input-bordered" />
+            <input type="password" name="password" placeholder="password" className="input input-bordered" />
           </div>
           <div className="form-control mt-2">
             <button className="btn btn-primary">Login</button>
@@ -22,7 +42,7 @@ const Signup = () => {
         </form>
       </div>
       <div className="text-center mt-3">
-        <p>Don't have an account? <Link className="link" to='/signup'>Signup Here</Link></p>
+        <p>Already have an account? <Link className="link" to='/login'>Login Here</Link></p>
       </div>
     </div>
   );
