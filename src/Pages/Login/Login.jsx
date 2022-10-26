@@ -14,22 +14,13 @@ const Login = () => {
     
   }
 
-  const handleGoogleLogin = () => {
-    providerLogin(googleProvider)
+  const handleLogin = (provider) => {
+    providerLogin(provider)
     .then((result) => {
       const {user} = result;
       console.log(user);
     })
-    .catch(err => console.error(err))
-  }
-
-  const handleGithubLogin = () => {
-    providerLogin(githubProvider)
-    .then((result) => {
-      const {user} = result;
-      console.log(user);
-    })
-    .catch(err => console.error(err))
+    .catch(err => console.error(err));
   }
 
   return (
@@ -53,10 +44,10 @@ const Login = () => {
             <button className="btn btn-primary">Login</button>
           </div>
           <div className="form-control mt-2">
-            <button onClick={handleGoogleLogin} className="btn btn-outline btn-success">Login with Google</button>
+            <button onClick={() => handleLogin(googleProvider)} className="btn btn-outline btn-success">Login with Google</button>
           </div>
           <div className="form-control mt-2">
-            <button onClick={handleGithubLogin} className="btn btn-outline btn-info">Login with Github</button>
+            <button onClick={() => handleLogin(githubProvider)} className="btn btn-outline btn-info">Login with Github</button>
           </div>
         </form>
       </div>

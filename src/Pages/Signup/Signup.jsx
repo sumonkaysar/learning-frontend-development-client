@@ -1,10 +1,31 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
 
+  const {createUser, updateUserData} = useContext(AuthContext);
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(event.target);
+    const form = event.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser({email, password})
+    .then(({user}) => {
+      console.log(user);
+      handleUpdateUser({displayName: name, photoURL});
+    })
+    .catch(err => console.error(err));
+  }
+
+  const handleUpdateUser = (data) => {
+    updateUserData(data)
+    .then(() => {})
+    .catch(err => console.error(err));
   }
 
   return (
@@ -28,13 +49,13 @@ const Signup = () => {
             <label className="label">
               <span className="label-text">Email</span>
             </label>
-            <input type="email" name="email" placeholder="email" className="input input-bordered" />
+            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input type="password" name="password" placeholder="password" className="input input-bordered" />
+            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
           </div>
           <div className="form-control mt-2">
             <button className="btn btn-primary">Login</button>
