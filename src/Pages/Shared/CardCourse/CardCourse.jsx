@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaStar } from 'react-icons/fa';
 
 const CardCourse = ({ course }) => {
-  const { id, name, details, images, category_id, price, ratings } = course;
+  const { id, name, details, images, price, ratings } = course;
 
   return (
     <div className="card bg-base-100 shadow-xl">
