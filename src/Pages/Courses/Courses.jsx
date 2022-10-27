@@ -6,7 +6,6 @@ import CardCourse from "../Shared/CardCourse/CardCourse";
 const Courses = () => {
   const categories = useLoaderData();
   const [courses, setCourses] = useState([]);
-  console.log(courses);
 
   const loadCourses = (id) => {
     fetch(`http://localhost:5000/category/${id}`)

@@ -6,7 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const {login, providerLogin} = useContext(AuthContext);
+  const {login, providerLogin, setLoading} = useContext(AuthContext);
 
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -46,7 +46,8 @@ const Login = () => {
       const {user} = result;
       console.log(user);
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error(err))
+    .finally(() => setLoading(false));
   }
 
   return (

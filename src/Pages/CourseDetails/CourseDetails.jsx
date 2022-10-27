@@ -12,9 +12,9 @@ const CourseDetails = () => {
     <div className="container mx-auto">
       <div className="card bg-base-100 shadow-xl max-w-[900px] mx-auto" ref={ref}>
       {/* <ReactToPdf targetRef={ref} filename="div-blue.pdf"> */}
-        {({toPdf}) => (
+        {/* {({toPdf}) => (
           <button className="btn rounded-b-none" onClick={toPdf}>Download</button>
-        )}
+        )} */}
     {/* </ReactToPdf> */}
 
         <figure className="">
