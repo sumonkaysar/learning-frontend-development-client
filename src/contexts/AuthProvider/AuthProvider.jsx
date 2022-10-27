@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 export const AuthContext = createContext();
@@ -13,6 +13,10 @@ const AuthProvider = ({children}) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
+  const verifyEmail = () => {
+    return sendEmailVerification(auth.currentUser);
+  }
 
   const login = ({email, password}) => {
     setLoading(true);
@@ -36,16 +40,16 @@ const AuthProvider = ({children}) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log('user', currentUser);
-      // if(currentUser == null || currentUser.emailVerified){
+      if(currentUser == null || currentUser.emailVerified || currentUser.providerData[0].providerId === "github.com"){
         setUser(currentUser);
-      // }
+      }
       setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  const authInfo = {user, setUser, createUser, login, providerLogin, updateUserData, logOut};
+  const authInfo = {user, setUser, createUser, verifyEmail, login, providerLogin, updateUserData, logOut};
 
   return (
     <AuthContext.Provider value={authInfo}>

@@ -1,25 +1,44 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import {toast} from 'react-hot-toast';
 
 const Signup = () => {
-
-  const {createUser, updateUserData} = useContext(AuthContext);
+  const {createUser, updateUserData, verifyEmail} = useContext(AuthContext);
+  const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+    setError('');
     const form = event.target;
     const name = form.name.value;
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
 
-    createUser({email, password})
-    .then(({user}) => {
-      console.log(user);
-      handleUpdateUser({displayName: name, photoURL});
+    if (email && password && name && photoURL) {
+      createUser({email, password})
+      .then(({user}) => {
+        console.log(user);
+        handleUpdateUser({displayName: name, photoURL});
+        handleVerifyEmail();
+        form.reset();
+      })
+      .catch(err => {
+        console.error(err);
+        setError(err.message);
+      });
+    }else{
+      setError("No input can be blank");
+    }
+  }
+
+  const handleVerifyEmail = () => {
+    verifyEmail()
+    .then(() => {
+      toast.success('Email verification link sent to your email address. Please verify your email address. (Check your spam messages also)');
     })
-    .catch(err => console.error(err));
+    .catch(err => console.log(err));
   }
 
   const handleUpdateUser = (data) => {
@@ -57,6 +76,7 @@ const Signup = () => {
             </label>
             <input type="password" name="password" placeholder="password" className="input input-bordered" required />
           </div>
+          <p className="text-error">{error}</p>
           <div className="form-control mt-2">
             <button className="btn btn-primary">Login</button>
           </div>

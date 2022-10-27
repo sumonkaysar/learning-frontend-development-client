@@ -1,28 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const {login, providerLogin} = useContext(AuthContext);
+
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+    setError('');
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    handleEmailLogin({email, password});
-  }
-
-  const handleEmailLogin = (data) => {
-    login(data)
-    .then(({user}) => {
-      console.log(user);
-    })
-    .catch(err => console.log(err));
+    if (email && password) {
+      login({email, password})
+      .then(({user}) => {
+        form.reset();
+        if (user.emailVerified) {
+          navigate('/');
+        }else{
+          toast.error('Your email is not verified. Please verify your email first.');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setError(err.message);
+      });
+    }else{
+      setError("Email or password can't be blank")
+    }
   }
 
   const handleLogin = (provider) => {
@@ -51,6 +66,7 @@ const Login = () => {
             </label>
             <input type="password" name="password" placeholder="password" className="input input-bordered" />
           </div>
+          <p className="text-error">{error}</p>
           <div className="form-control mt-2">
             <button className="btn btn-primary">Login</button>
           </div>
