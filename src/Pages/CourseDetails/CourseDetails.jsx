@@ -10,7 +10,7 @@ const CourseDetails = () => {
 
   return (
     <div className="container mx-auto" ref={ref}>
-      <div className="card bg-base-100 shadow-xl max-w-[900px] mx-auto">
+      <div className="card bg-base-100 shadow-xl lg:max-w-[900px] max-w-[90%] mx-auto">
         <ReactToPdf targetRef={ref} filename="course.pdf">
           {({ toPdf }) => (
             <button className="btn btn-ghost rounded-b-none" onClick={toPdf}>Download</button>
@@ -20,7 +20,7 @@ const CourseDetails = () => {
           <div className="carousel w-full">
             {
               images.map((img, index) => <div id={`slide${index}`} key={index} className="carousel-item relative w-full">
-                <img src={img} className="w-full" />
+                <img src={img} className="object-cover w-full h-full" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                   <a href={`#slide${index == 0 ? 2 : index - 1}`} className="btn btn-circle">❮</a>
                   <a href={`#slide${index == 2 ? 0 : index + 1}`} className="btn btn-circle">❯</a>

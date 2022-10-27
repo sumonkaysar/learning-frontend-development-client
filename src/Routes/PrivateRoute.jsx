@@ -8,6 +8,7 @@ const PrivateRoute = ({children}) => {
   const {user, loading} = useContext(AuthContext);
   const location = useLocation();
 
+  // If the page is loading, show spinner
   if (loading) {
     return (
       <div className="flex justify-center">
@@ -16,6 +17,7 @@ const PrivateRoute = ({children}) => {
     );
   }
 
+  // if user is not found, redirect to login
   if(!user) {
     return <Navigate to="/login" state={{from: location}} replace />;
   }

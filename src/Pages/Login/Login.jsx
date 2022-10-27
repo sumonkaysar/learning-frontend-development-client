@@ -12,11 +12,13 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // set location from state property
   const from = location.state?.from?.pathname || '/';
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
+  // email and password submit
   const handleSubmit = (event) => {
     event.preventDefault();
     setError('');
@@ -29,9 +31,11 @@ const Login = () => {
         .then(({ user }) => {
           form.reset();
           if (user.emailVerified) {
+            // Success
             toast.success('Login Success');
             setTimeout(() => navigate(from, { replace: true }), 2000);
           } else {
+            // email Not verified
             toast.error('Your email is not verified. Please verify your email first.');
           }
         })
@@ -44,6 +48,7 @@ const Login = () => {
     }
   }
 
+  // handle provider (google and github) login
   const handleLogin = (provider) => {
     providerLogin(provider)
       .then((result) => {

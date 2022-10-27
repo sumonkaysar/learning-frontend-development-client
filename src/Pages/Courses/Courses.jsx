@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import CardCourse from "../Shared/CardCourse/CardCourse";
 
 const Courses = () => {
   const categories = useLoaderData();
   const [courses, setCourses] = useState([]);
 
+  // function Load courses by categories id
   const loadCourses = (id) => {
     fetch(`https://learning-frontend-development-server.vercel.app/category/${id}`)
     .then(res => res.json())
@@ -14,16 +15,19 @@ const Courses = () => {
     .catch(err => console.error(err));
   }
 
+  // Load courses by categories
   const loadCategoryCourses = (id) => {
     loadCourses(id);
   }
 
+  // Load all courses by default
   useEffect(() => {
     loadCourses('00');
   }, []);
 
   return (
-    <div className="md:flex container gap-5 mx-auto max-w-[90%]">
+    <div className="container mx-auto">
+      <div className="md:flex gap-5 mx-auto max-w-[90%]">
       <div className="flex-shrink mb-7">
         <h3 className="text-3xl font-bold">Categories</h3>
         {
@@ -41,6 +45,7 @@ const Courses = () => {
           />)
         }
       </div>
+    </div>
     </div>
   );
 }

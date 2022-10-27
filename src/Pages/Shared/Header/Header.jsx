@@ -4,18 +4,18 @@ import { RiPaintFill } from 'react-icons/ri'
 import { useContext } from "react";
 import Logo from '../../../assets/logo/logo.png';
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import { getFromLocalStorage } from "../../../utilities/utilities";
 
 const Header = () => {
   const { user, logOut, theme, themeChanger } = useContext(AuthContext);
-  let localTheme = getFromLocalStorage('theme');
 
+  // Logout
   const handleLogout = () => {
     logOut()
     .then(() => console.log('logged out'))
     .catch(err => console.error(err));
   }
 
+  // Theme changer
   const handleTheme = () => {
     let newTheme;
     if (theme === 'dark') {
@@ -58,6 +58,7 @@ const Header = () => {
                 <li><Link to="/login">Login</Link></li>
             }
           </ul>
+          {/* Mobile menu */}
           <div className="dropdown md:hidden">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <FaBars />

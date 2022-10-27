@@ -8,6 +8,7 @@ const Signup = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // handle signup submit
   const handleSubmit = (event) => {
     event.preventDefault();
     setError('');
@@ -35,6 +36,7 @@ const Signup = () => {
     }
   }
 
+  // Email verify alert
   const handleVerifyEmail = () => {
     verifyEmail()
     .then(() => {
@@ -43,6 +45,7 @@ const Signup = () => {
     .catch(err => console.log(err));
   }
 
+  // update user name and photo
   const handleUpdateUser = (data) => {
     updateUserData(data)
     .then(() => {})

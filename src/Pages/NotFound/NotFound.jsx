@@ -1,6 +1,7 @@
 import { getFromLocalStorage } from "../../utilities/utilities";
 
 const NotFound = () => {
+  // getting theme from local storage
   const theme = getFromLocalStorage('theme') || 'dark';
 
   return (
