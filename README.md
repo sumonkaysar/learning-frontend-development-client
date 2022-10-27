@@ -13,6 +13,7 @@ This a learning platform to learn frontend web development. Here you'll find the
 - Theme (dark, light)
 <br>
 ## Technologies
+<br>
 - react
 - react-router-dom
 - react-hot-toast
