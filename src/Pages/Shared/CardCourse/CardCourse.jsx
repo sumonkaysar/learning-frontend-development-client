@@ -6,7 +6,7 @@ const CardCourse = ({ course }) => {
 
   return (
     <div className="card bg-base-100 shadow-xl">
-      <figure className="h-40 overflow-hidden"><img src={images[0]} alt="Shoes" /></figure>
+      <figure className="h-40 overflow-hidden"><img src={images[0]} alt="course" /></figure>
       <div className="card-body p-4">
         <h2 className="card-title">{name}</h2>
         <h5>Price: $<span className="font-bold">{price}</span></h5>

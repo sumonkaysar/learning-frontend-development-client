@@ -1,5 +1,6 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import Root from "../layout/Root";
+import Blog from "../Pages/Blog/Blog";
 import Checkout from "../Pages/Checkout/Checkout";
 import CourseDetails from "../Pages/CourseDetails/CourseDetails";
 import Courses from "../Pages/Courses/Courses";
@@ -42,6 +43,10 @@ const routes = createBrowserRouter(
         path="/checkout/:id"
         loader={({params}) => fetch(`https://learning-frontend-development-server.vercel.app/course/${params.id}`)}
         element={<PrivateRoute><Checkout /></PrivateRoute>}
+      />
+      <Route
+        path="/blog"
+        element={<Blog />}
       />
     </Route>
   )
