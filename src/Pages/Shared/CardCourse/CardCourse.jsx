@@ -28,7 +28,7 @@ const CardCourse = ({ course }) => {
             <span>{ratings.persons}</span>
           </div>
         </div>
-        <button className="btn btn-primary">Buy Now</button>
+        <Link to={`/course-details/${id}`} className="btn btn-primary">Details</Link>
       </div>
     </div>
   );

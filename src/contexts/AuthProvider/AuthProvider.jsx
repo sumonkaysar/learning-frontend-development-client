@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from '../../firebase/firebase.config';
+import {setToLocalStorage, getFromLocalStorage} from '../../utilities/utilities';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -8,6 +9,9 @@ const auth = getAuth(app);
 const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // themes
+  const localTheme = getFromLocalStorage('theme') || "dark";
+  const [theme, setTheme] = useState(localTheme);
 
   const createUser = ({email, password}) => {
     setLoading(true);
@@ -48,7 +52,12 @@ const AuthProvider = ({children}) => {
     return () => unsubscribe();
   }, []);
 
-  const authInfo = {loading, setLoading, user, setUser, createUser, verifyEmail, login, providerLogin, updateUserData, logOut};
+  const themeChanger = (newTheme) => {
+    setToLocalStorage('theme', newTheme);
+    setTheme(newTheme);
+  }
+
+  const authInfo = {loading, setLoading, user, setUser, createUser, verifyEmail, login, providerLogin, updateUserData, logOut, theme, themeChanger};
 
   return (
     <AuthContext.Provider value={authInfo}>

@@ -1,15 +1,28 @@
 import { Link } from "react-router-dom";
-import { FaBars, FaMoon, FaSun } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa'
+import { RiPaintFill } from 'react-icons/ri'
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { getFromLocalStorage } from "../../../utilities/utilities";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, theme, themeChanger } = useContext(AuthContext);
+  let localTheme = getFromLocalStorage('theme');
 
   const handleLogout = () => {
     logOut()
     .then(() => console.log('logged out'))
-    .catch(err => console.error(err))
+    .catch(err => console.error(err));
+  }
+
+  const handleTheme = () => {
+    let newTheme;
+    if (theme === 'dark') {
+      newTheme = 'light';
+    }else{
+      newTheme = 'dark';
+    }
+    themeChanger(newTheme);
   }
 
   return (
@@ -26,12 +39,8 @@ const Header = () => {
             <li><Link to="/courses">Courses</Link></li>
             <li><Link to="/faq">FAQ</Link></li>
             <li><Link to="/blog">Blog</Link></li>
-            <li>
-              <label className="swap swap-rotate">
-                <input type="checkbox" />
-                <FaSun className="swap-on" />
-                <FaMoon className="swap-off" />
-              </label>
+            <li onClick={handleTheme}>
+              <span><RiPaintFill className="w-6 h-6" /></span>
             </li>
             {
               user ?
@@ -41,8 +50,8 @@ const Header = () => {
                       <img title={user?.displayName} className="w-7 h-7 rounded-full" src={user?.photoURL} />
                     </Link>
                   </li>
-                  <li>
-                    <button onClick={handleLogout} className="btn">Logout</button>
+                  <li className="items-center">
+                    <button onClick={handleLogout} className="btn btn-outline btn-sm py-0">Logout</button>
                   </li>
                 </> :
                 <li><Link to="/login">Login</Link></li>
@@ -73,6 +82,9 @@ const Header = () => {
               <li><Link to="/courses">Courses</Link></li>
               <li><Link to="/faq">FAQ</Link></li>
               <li><Link to="/blog">Blog</Link></li>
+              <li onClick={handleTheme}>
+                <span><RiPaintFill className="w-6 h-6" /></span>
+              </li>
             </ul>
           </div>
         </div>
