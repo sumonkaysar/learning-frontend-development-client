@@ -1,7 +1,7 @@
 # Learning Frontend Website <br>
 This a learning platform to learn frontend web development. Here you'll find the best courses to be a frontend developer.
 <br>
-[Live Site:](https://learning-frontend-development.web.app/)
+[Live Site](https://learning-frontend-development.web.app/)
 <br>
 ## Features
 - Login(email-password, google, github)
@@ -21,5 +21,6 @@ This a learning platform to learn frontend web development. Here you'll find the
 - Firebase Auth
 - react-icons
 - react-spinners
+<br>
 <br>
 Visit here: https://learning-frontend-development.web.app/
