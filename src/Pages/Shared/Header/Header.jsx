@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaBars } from 'react-icons/fa'
 import { RiPaintFill } from 'react-icons/ri'
 import { useContext } from "react";
+import Logo from '../../../assets/logo/logo.png';
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { getFromLocalStorage } from "../../../utilities/utilities";
 
@@ -30,7 +31,7 @@ const Header = () => {
       <div className="container mx-auto">
         <div className="flex-1">
           <Link to="/" className="flex items-center text-sm md:text-xl">
-            <img className="w-5 h-5 md:w-7 md:h-7 mr-2" src="logo.png" />
+            <img className="w-5 h-5 md:w-7 md:h-7 mr-2" src={Logo} />
             <span>Learning Frontend Development</span>
           </Link>
         </div>
