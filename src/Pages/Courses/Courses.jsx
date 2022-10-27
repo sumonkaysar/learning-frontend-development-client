@@ -8,7 +8,7 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
 
   const loadCourses = (id) => {
-    fetch(`http://localhost:5000/category/${id}`)
+    fetch(`https://learning-frontend-development-server.vercel.app/category/${id}`)
     .then(res => res.json())
     .then(allCourses => setCourses(allCourses))
     .catch(err => console.error(err));
@@ -25,6 +25,7 @@ const Courses = () => {
   return (
     <div className="md:flex container gap-5 mx-auto max-w-[90%]">
       <div className="flex-shrink mb-7">
+        <h3 className="text-3xl font-bold">Categories</h3>
         {
           categories.map(category => <p key={category.id}>
             <button onClick={() => loadCategoryCourses(category.id)} className="link">{category.name}</button>

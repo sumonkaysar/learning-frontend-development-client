@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
@@ -6,10 +6,13 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const {login, providerLogin, setLoading} = useContext(AuthContext);
+  const { login, providerLogin, setLoading } = useContext(AuthContext);
 
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -22,32 +25,34 @@ const Login = () => {
     const password = form.password.value;
 
     if (email && password) {
-      login({email, password})
-      .then(({user}) => {
-        form.reset();
-        if (user.emailVerified) {
-          navigate('/');
-        }else{
-          toast.error('Your email is not verified. Please verify your email first.');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        setError(err.message);
-      });
-    }else{
+      login({ email, password })
+        .then(({ user }) => {
+          form.reset();
+          if (user.emailVerified) {
+            toast.success('Login Success');
+            setTimeout(() => navigate(from, { replace: true }), 2000);
+          } else {
+            toast.error('Your email is not verified. Please verify your email first.');
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          setError(err.message);
+        });
+    } else {
       setError("Email or password can't be blank")
     }
   }
 
   const handleLogin = (provider) => {
     providerLogin(provider)
-    .then((result) => {
-      const {user} = result;
-      console.log(user);
-    })
-    .catch(err => console.error(err))
-    .finally(() => setLoading(false));
+      .then((result) => {
+        // const {user} = result;
+        toast.success('Login Success');
+        setTimeout(() => navigate(from, { replace: true }), 2000);
+      })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }
 
   return (

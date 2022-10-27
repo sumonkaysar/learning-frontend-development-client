@@ -16,7 +16,7 @@ const CardCourse = ({ course }) => {
             <>{details.slice(0, 50)}</> :
             details
           }
-          ... <Link className="link text-xs" to={`/course-details/${id}`}>Show Details</Link>
+          ... <Link className="link text-xs" to={`/course-details/${id}`}>Show More</Link>
         </p>
         <div className="flex justify-between">
           <div className="flex items-center gap-2">

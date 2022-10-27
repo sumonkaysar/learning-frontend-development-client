@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import {toast} from 'react-hot-toast';
 
 const Signup = () => {
   const {createUser, updateUserData, verifyEmail} = useContext(AuthContext);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,6 +24,7 @@ const Signup = () => {
         handleUpdateUser({displayName: name, photoURL});
         handleVerifyEmail();
         form.reset();
+        setTimeout(() => navigate('/login'), 4000);
       })
       .catch(err => {
         console.error(err);
