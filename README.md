@@ -1,5 +1,7 @@
 # Learning Frontend Website <br>
-[Live Link:](https://learning-frontend-development.web.app/) https://learning-frontend-development.web.app/
+This a learning platform to learn frontend web development. Here you'll find the best courses to be a frontend developer.
+<br>
+[Live Site:](https://learning-frontend-development.web.app/)
 <br>
 ## Features
 - Login(email-password, google, github)
@@ -10,3 +12,14 @@
 - Private Route on checkout
 - Theme (dark, light)
 <br>
+## Technologies
+- react
+- react-router-dom
+- react-hot-toast
+- react-to-pdf
+- Tailwind (DaisyUI)
+- Firebase Auth
+- react-icons
+- react-spinners
+<br>
+Visit here: https://learning-frontend-development.web.app/
