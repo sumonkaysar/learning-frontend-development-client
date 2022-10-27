@@ -5,11 +5,11 @@ import { createRef } from "react";
 import ReactToPdf from 'react-to-pdf';
 
 const CourseDetails = () => {
-  const { id, name, details, images, category_id, price, ratings } = useLoaderData();
+  const { id, name, details, images, price, ratings } = useLoaderData();
   const ref = createRef();
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto" ref={ref}>
       <div className="card bg-base-100 shadow-xl max-w-[900px] mx-auto">
         <ReactToPdf targetRef={ref} filename="course.pdf">
           {({ toPdf }) => (
@@ -29,7 +29,7 @@ const CourseDetails = () => {
             }
           </div>
         </figure>
-        <div className="card-body" ref={ref}>
+        <div className="card-body">
           <h2 className="card-title">{name}</h2>
           <h5>Price: $<span className="font-bold">{price}</span></h5>
           <p>{details}</p>
