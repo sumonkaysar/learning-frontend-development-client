@@ -53,30 +53,32 @@ const Login = () => {
     <div className="container mx-auto pb-5">
       <h3 className="text-center text-3xl font-bold mb-5">Login</h3>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
-        <form className="card-body" onSubmit={handleSubmit}>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <input type="email" name="email" placeholder="email" className="input input-bordered" />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <input type="password" name="password" placeholder="password" className="input input-bordered" />
-          </div>
-          <p className="text-error">{error}</p>
-          <div className="form-control mt-2">
-            <button className="btn btn-primary">Login</button>
-          </div>
+        <div className="card-body">
+          <form onSubmit={handleSubmit}>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input type="email" name="email" placeholder="email" className="input input-bordered" />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input type="password" name="password" placeholder="password" className="input input-bordered" />
+            </div>
+            <p className="text-error">{error}</p>
+            <div className="form-control mt-3">
+              <button className="btn btn-primary">Login</button>
+            </div>
+          </form>
           <div className="form-control mt-2">
             <button onClick={() => handleLogin(googleProvider)} className="btn btn-outline btn-success">Login with Google</button>
           </div>
           <div className="form-control mt-2">
             <button onClick={() => handleLogin(githubProvider)} className="btn btn-outline btn-info">Login with Github</button>
           </div>
-        </form>
+        </div>
       </div>
       <div className="text-center mt-3">
         <p>Don't have an account? <Link className="link" to='/signup'>Signup Here</Link></p>

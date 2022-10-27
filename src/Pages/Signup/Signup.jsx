@@ -78,7 +78,7 @@ const Signup = () => {
           </div>
           <p className="text-error">{error}</p>
           <div className="form-control mt-2">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary">Signup</button>
           </div>
         </form>
       </div>
