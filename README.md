@@ -12,7 +12,7 @@ This a learning platform to learn frontend web development. Here you'll find the
 - Private Route on checkout
 - Theme (dark, light)
 <br>
-## Technologies
+### Technologies
 <br>
 - react
 - react-router-dom
